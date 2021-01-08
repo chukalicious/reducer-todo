@@ -17,8 +17,6 @@ const List = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    tasks: [...state.tasks],
-  };
+  return {};
 };
-export default connect(mapStateToProps, {})(List);
+export default connect(null, {})(List);

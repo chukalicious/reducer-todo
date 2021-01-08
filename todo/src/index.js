@@ -3,11 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { todoReducer } from "./reducers";
+import { composeWithDevTools } from "redux-devtools-extension";
+import logger from "redux-logger";
 
-const store = createStore(todoReducer);
+import { listReducer } from "../src/store/reducers";
+
+const store = createStore(
+  listReducer,
+  composeWithDevTools(applyMiddleware(logger))
+);
 
 ReactDOM.render(
   <Provider store={store}>

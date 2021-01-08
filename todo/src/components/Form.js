@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { holdTodo } from "../actions";
 
 const Form = (props) => {
   console.log("Props in Form: ", props);
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => {
     id: state.id,
   };
 };
-export default connect(mapStateToProps, { holdTodo })(Form);
+export default connect(null, {})(Form);
