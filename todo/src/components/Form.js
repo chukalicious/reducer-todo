@@ -29,7 +29,7 @@ const Form = (props) => {
 
   return (
     <div>
-      <h3>This is the Form component</h3>
+      <h3>Add an item to your list</h3>
       <form onSubmit={captureTodo}>
         <input
           type="text"

@@ -6,10 +6,14 @@ const List = (props) => {
   console.log("Props in the List component: ", props);
   return (
     <div>
-      <h3>This is the List component. </h3>
-      {props.list.map((item) => (
-        <Item item={item} key={item.id} />
-      ))}
+      {props.list.length > 0 ? (
+        <div>
+          <h3>Here are your pending tasks: </h3>
+          {props.list.map((item) => (
+            <Item item={item} key={item.id} />
+          ))}{" "}
+        </div>
+      ) : null}
     </div>
   );
 };
