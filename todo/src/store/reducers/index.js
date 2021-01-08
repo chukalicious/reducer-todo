@@ -1,18 +1,26 @@
-import { ADD_TO_LIST } from "../actions/index";
+import { CREATE_TASK, HOLD_TODO, MARK_COMPLETED } from "../actions/index";
 
 const initialState = {
-  item: "Learn about reducers",
-  completed: false,
-  id: 3892987589,
-  tasks: [],
+  list: [],
 };
 
-export const listReducer = (state, action) => {
+export const listReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TO_LIST: {
+    case CREATE_TASK: {
       return {
         ...state,
-        tasks: [...action.payload],
+      };
+    }
+    case HOLD_TODO: {
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+      };
+    }
+    case MARK_COMPLETED: {
+      return {
+        ...state,
+        list: state.list.filter((li) => li.id !== action.payload.id),
       };
     }
     default:

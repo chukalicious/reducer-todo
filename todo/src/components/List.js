@@ -4,19 +4,19 @@ import Item from "./Item";
 
 const List = (props) => {
   console.log("Props in the List component: ", props);
-  const [list, setList] = useState([{ ...props.list }]);
-  console.log("This is a list item: ", list);
   return (
     <div>
       <h3>This is the List component. </h3>
-      {list.map((task) => (
-        <Item task={task} key={task.id} />
+      {props.list.map((item) => (
+        <Item item={item} key={item.id} />
       ))}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    list: state.list,
+  };
 };
-export default connect(null, {})(List);
+export default connect(mapStateToProps, {})(List);

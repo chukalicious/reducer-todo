@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { holdTodo } from "../store/actions";
 
 const Form = (props) => {
-  console.log("Props in Form: ", props);
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({
+    item: "",
+    id: "",
+    completed: false,
+  });
 
   const handleChange = (e) => {
-    setTodo(e.target.value);
+    setTodo({
+      item: e.target.value,
+      id: Date.now(),
+      completed: false,
+    });
   };
-  console.log("todo: ", todo);
 
   const captureTodo = (e) => {
     e.preventDefault();
     props.holdTodo(todo);
-    //logic to send the value to the global state
-    setTodo("");
+    setTodo({
+      item: "",
+      id: "",
+      completed: false,
+    });
   };
 
   return (
@@ -25,7 +35,7 @@ const Form = (props) => {
           type="text"
           placeholder="Enter a Todo Item"
           id="todo"
-          value={todo}
+          value={todo.item}
           onChange={handleChange}
         />
         <button>Add</button>
@@ -41,4 +51,4 @@ const mapStateToProps = (state) => {
     id: state.id,
   };
 };
-export default connect(null, {})(Form);
+export default connect(null, { holdTodo })(Form);
